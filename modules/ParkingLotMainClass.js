@@ -6,5 +6,10 @@ class ParkingLotMainClass{
     constructor(){
         this.parking=[];
     }
+    //Method To Add Vehicle To Parking
+    isParked(vehicle){
+        this.parking.push(vehicle)
+        return true
+    }
 }
 module.exports=new ParkingLotMainClass;
