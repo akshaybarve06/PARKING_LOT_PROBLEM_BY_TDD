@@ -12,4 +12,14 @@ describe(`Test Cases For Parking Lot System`, () =>
         let carParkedOrNot= parkingLotMain.isParked(car);
         assert.equal(true,carParkedOrNot);
     })
+   // Test For Possiblities To Add Vehicle in Parking Lot
+   it(`given car object when invalid and car is not parked should return exception`, () =>
+   {
+       try{
+            let carParkedOrNot= parkingLotMain.isParked(null);
+            assert.equal(true,carParkedOrNot);
+       }catch(e){
+           console.log(e.message);
+       }
+   })
 })
