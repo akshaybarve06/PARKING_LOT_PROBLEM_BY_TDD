@@ -22,4 +22,10 @@ describe(`Test Cases For Parking Lot System`, () =>
            console.log(e.message);
        }
    })
+   // Test For Unpark Car from parking Lot
+   it(`given car object when car is unpark then return true`, () =>{
+        let car = {};
+        let carParkedOrNot= parkingLotMain.isUnparked(car);
+        assert.equal(true,carParkedOrNot);
+   })
 })
