@@ -14,6 +14,13 @@ class ParkingLotMainClass{
             this.parking.push(vehicle)
             return true
         }     
+    }    
+    //Method To Add Vehicle To Parking
+    isUnparked(vehicle){
+        if( this.parking.includes(vehicle)){
+            this.parking.pop(vehicle)
+            return true
+        }     
     }
 }
 module.exports=new ParkingLotMainClass;
