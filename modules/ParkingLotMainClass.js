@@ -2,29 +2,23 @@
 
 class ParkingLotMainClass{
 
-    // Constructor To Initialize The Ojects
-    constructor(){
-        this.parking=[];
-    }
     //Method To Add Vehicle To Parking
-    isParked(vehicle){
-        if( vehicle == null || vehicle == undefined)
-            throw new Error("Couldn't Park..Invalid Vehicle..")
-        else{
-            this.parking.push(vehicle)
-            return true
-        }     
-    }    
+    isParked=(parking,vehicle,callback) => {
+    if( vehicle == null || vehicle == undefined){
+        throw new Error("Couldn't Park..Invalid Vehicle..")
+    }
+    else {
+            parking.push(vehicle)
+            callback(true)
+            }     
+    }
+  
     //Method To Remove Vehicle To Parking
-    isUnparked(vehicle){
+    isUnparked=(vehicle)=>{
         if( vehicle == null || vehicle == undefined)
             throw new Error("Couldn't Unpark Car..Invalid Vehicle..")
         else 
-            if(this.parking.includes(vehicle)){
-                this.parking.pop(vehicle)
-                return true
-            }      
+            return true
     }
-    
 }
 module.exports=new ParkingLotMainClass;
