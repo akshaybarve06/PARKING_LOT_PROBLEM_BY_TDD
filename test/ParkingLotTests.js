@@ -50,4 +50,18 @@ describe(`Test Cases For Parking Lot System`, () =>
             console.log(e.message);
         }
     })
+    // Test For Check The Parking Lot Is Full
+    it.only(`given car object when park if parking full should return parking full`, ()=>{
+        let carParkObject = sinon.spy()
+        try{
+            parkingLotMain.isParked(parking,carParkObject,function(result){
+            parkingLotMain.isParked(parking,carParkObject,function(result){
+            parkingLotMain.isParked(parking,carParkObject,function(result){
+                expect(result).to.equal(true);
+            })})})
+        }catch(e){
+            console.log(e.message)
+        }
+    })
+
 })

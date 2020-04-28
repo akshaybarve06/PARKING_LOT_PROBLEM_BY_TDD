@@ -1,5 +1,7 @@
 // Main Class For Parking Lot System
 
+let owner=require('../modules/ParkingLotOwner')
+
 class ParkingLotMainClass{
 
     //Method To Add Vehicle To Parking
@@ -8,11 +10,18 @@ class ParkingLotMainClass{
         throw new Error("Couldn't Park..Invalid Vehicle..")
     }
     else {
+        owner.checkParkingFull(parking,function(result){
+        if(result == true){
             parking.push(vehicle)
-            callback(true)
+            callback(result)
+        }
+        else{
+                parking.push(vehicle)
+                callback(true)
             }     
+        })
     }
-  
+}  
     //Method To Remove Vehicle To Parking
     isUnparked=(vehicle)=>{
         if( vehicle == null || vehicle == undefined)
