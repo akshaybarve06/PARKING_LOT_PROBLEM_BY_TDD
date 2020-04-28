@@ -55,13 +55,16 @@ describe(`Test Cases For Parking Lot System`, () =>
         let carParkObject = sinon.spy()
         try{
             parkingLotMain.isParked(parking,carParkObject,function(result){
-            parkingLotMain.isParked(parking,carParkObject,function(result){
-            parkingLotMain.isParked(parking,carParkObject,function(result){
+                parkingLotMain.isParked(parking,carParkObject,function(result){
+                    parkingLotMain.isParked(parking,carParkObject,function(result){
+                        expect(result).to.equal(true);
+                    })
+                    expect(result).to.equal(true);
+                })
                 expect(result).to.equal(true);
-            })})})
-        }catch(e){
-            console.log(e.message)
-        }
+            })
+            }catch(e){
+                console.log(e.message)
+            }
     })
-
 })

@@ -10,15 +10,12 @@ class ParkingLotMainClass{
         throw new Error("Couldn't Park..Invalid Vehicle..")
     }
     else {
+        // If Parking is not full then it will add vehicle
         owner.checkParkingFull(parking,function(result){
         if(result == true){
             parking.push(vehicle)
             callback(result)
-        }
-        else{
-                parking.push(vehicle)
-                callback(true)
-            }     
+        }     
         })
     }
 }  
