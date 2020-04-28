@@ -2,7 +2,7 @@
 
 class ParkingLotMainClass{
 
-    // Constructor To Inotialize The Ojects
+    // Constructor To Initialize The Ojects
     constructor(){
         this.parking=[];
     }
