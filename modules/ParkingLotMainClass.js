@@ -12,19 +12,20 @@ class ParkingLotMainClass{
     else {
         // If Parking is not full then it will add vehicle
         owner.checkParkingFull(parking,function(result){
-        if(result == true){
-            parking.push(vehicle)
-            callback(result)
-        }     
+            if(result == true){
+                parking.push(vehicle)
+                callback(result)
+            }     
         })
-    }
-}  
+        }
+    }  
     //Method To Remove Vehicle To Parking
     isUnparked=(vehicle)=>{
         if( vehicle == null || vehicle == undefined){
             throw new Error("Couldn't Unpark Car..Invalid Vehicle..")
             return false
-        }else 
+        }
+        else 
             return true
     }
 }

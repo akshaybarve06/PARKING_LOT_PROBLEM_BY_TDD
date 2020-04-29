@@ -13,10 +13,7 @@ describe(`Test Cases For Parking Lot System`, () =>
     beforeEach(()=>{
         car = new Object();
         parking =[];
-        let checkParkingFull=sinon.stub(owner,'checkParkingFull');
-    })
-    afterEach(()=>{
-        owner.checkParkingFull.restore();
+
     })
     // Test For Add Vehicle in Parking Lot
     it(`given car object when car is parked should return true`, () =>
@@ -56,7 +53,7 @@ describe(`Test Cases For Parking Lot System`, () =>
         }
     })
     // Test For Check The Parking Lot Is Full
-    it.only(`given car object when park if parking full should return parking full`, ()=>{
+    it(`given car object when park if parking full should return parking full`, ()=>{
         let carParkObject = sinon.spy()
         try{
             parkingLotMain.isParked(parking,carParkObject,function(result){
@@ -81,9 +78,7 @@ describe(`Test Cases For Parking Lot System`, () =>
                     parkingLotMain.isParked(parking,carParkObject,function(result){
                         expect(result).to.equal(true);
                     })
-                    expect(result).to.equal(true);
                 })
-                expect(result).to.equal(true);
             })
             }catch(e){
                 console.log(e.message)
