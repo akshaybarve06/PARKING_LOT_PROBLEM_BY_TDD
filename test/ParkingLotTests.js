@@ -13,7 +13,10 @@ describe(`Test Cases For Parking Lot System`, () =>
     beforeEach(()=>{
         car = new Object();
         parking =[];
-
+        sinon.stub(owner,'checkParkingFull');
+    })
+    afterEach(()=>{
+        owner.checkParkingFull.restore();
     })
     // Test For Add Vehicle in Parking Lot
     it(`given car object when car is parked should return true`, () =>
@@ -34,7 +37,8 @@ describe(`Test Cases For Parking Lot System`, () =>
         }
     })
     // Test For Unpark Car from parking Lot
-    it(`given car object when car is unpark then return true`, () =>{
+    it(`given car object when car is unpark then return true`, () =>
+    {
         parkingLotMain.isParked(parking,car,function(result){
             let carParkedOrNot= parkingLotMain.isUnparked(car);
             expect(carParkedOrNot).to.equal(true);
@@ -53,7 +57,8 @@ describe(`Test Cases For Parking Lot System`, () =>
         }
     })
     // Test For Check The Parking Lot Is Full
-    it(`given car object when park if parking full should return parking full`, ()=>{
+    it(`given car object when park if parking full should return parking full`, () =>
+    {
         let carParkObject = sinon.spy()
         try{
             parkingLotMain.isParked(parking,carParkObject,function(result){
@@ -65,12 +70,13 @@ describe(`Test Cases For Parking Lot System`, () =>
                 })
                 expect(result).to.equal(true);
             })
-            }catch(e){
-                console.log(e.message)
-            }
+        }catch(e){
+            console.log(e.message)
+        }
     })
     //Test For Checking If Parking Is Full and notify Airport Security
-    it.only(`given car object when parking is full then notify airport security return exception`, () =>{
+    it(`given car object when parking is full then notify airport security return exception`,() =>
+    {
         let carParkObject = sinon.spy()
         try{
             parkingLotMain.isParked(parking,carParkObject,function(result){
@@ -80,8 +86,8 @@ describe(`Test Cases For Parking Lot System`, () =>
                     })
                 })
             })
-            }catch(e){
-                console.log(e.message)
-            }
+        }catch(e){
+            console.log(e.message)
+        }
     })
 })

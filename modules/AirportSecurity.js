@@ -1,13 +1,8 @@
 // Airport Security Class To Send Notification To Airport If Parking is Full
-let parkingCapacity=2;
 
-class AirportSecurity{
-
-    // Method To Send Notifation TO Airport When Parking Is Full
-    sendNotification=(function(result){
-        if (result==false)
-            console.log("Notification From Parking Lot : Parking Is Full..!")
-    })
-
+// Method To Send Notifation TO Airport When Parking Is Full
+let sendNotification=function(result){
+    if (result==false)
+        console.log("Notification From Parking Lot : Parking Is Full..!")
 }
-module.exports=new AirportSecurity;
+exports.sendNotification= sendNotification;
