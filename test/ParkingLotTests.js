@@ -2,8 +2,8 @@
 let expect = require('chai').expect
 let chai = require('chai')
 let sinon = require('sinon')
-let parkingLotMain = require('../modules/ParkingLotMainClass')
-let owner = require('../modules/ParkingLotOwner')
+let parkingLotMain = require('../main/ParkingLotMainClass')
+let owner= require('../main/ParkingLotOwner')
 let car
 let parking =[]
 //Test Cases For Parking Lot System
@@ -13,16 +13,18 @@ describe(`Test Cases For Parking Lot System`, () =>
     beforeEach(()=>{
         car = new Object();
         parking =[];
-        sinon.stub(owner,'checkParkingFull');
     })
-    afterEach(()=>{
-        owner.checkParkingFull.restore();
-    })
+
+    // Notification Didn't show so, commented this
+    /*      sinon.stub(owner,'checkParkingFull');
+            afterEach(()=>{
+            owner.checkParkingFull.restore();})     */
+            
     // Test For Add Vehicle in Parking Lot
     it(`given car object when car is parked should return true`, () =>
     {
         parkingLotMain.isParked(parking,car,function(result){
-        expect(result).to.equal(true);
+            expect(result).to.equal(true);
         });
     })
     // Test For Possiblities To Add Vehicle in Parking Lot
@@ -30,7 +32,7 @@ describe(`Test Cases For Parking Lot System`, () =>
     {
         try{
             parkingLotMain.isParked(parking,null,function(result){
-            expect(result).to.equal(true);
+                expect(result).to.equal(true);
             });
         }catch(e){
             console.log(e.message);
@@ -59,11 +61,10 @@ describe(`Test Cases For Parking Lot System`, () =>
     // Test For Check The Parking Lot Is Full
     it(`given car object when park if parking full should return parking full`, () =>
     {
-        let carParkObject = sinon.spy()
         try{
-            parkingLotMain.isParked(parking,carParkObject,function(result){
-                parkingLotMain.isParked(parking,carParkObject,function(result){
-                    parkingLotMain.isParked(parking,carParkObject,function(result){
+            parkingLotMain.isParked(parking,car,function(result){
+                parkingLotMain.isParked(parking,car,function(result){
+                    parkingLotMain.isParked(parking,car,function(result){
                         expect(result).to.equal(true);
                     })
                     expect(result).to.equal(true);
@@ -77,11 +78,10 @@ describe(`Test Cases For Parking Lot System`, () =>
     //Test For Checking If Parking Is Full and notify Airport Security
     it(`given car object when parking is full then notify airport security return exception`,() =>
     {
-        let carParkObject = sinon.spy()
         try{
-            parkingLotMain.isParked(parking,carParkObject,function(result){
-                parkingLotMain.isParked(parking,carParkObject,function(result){
-                    parkingLotMain.isParked(parking,carParkObject,function(result){
+            parkingLotMain.isParked(parking,car,function(result){
+                parkingLotMain.isParked(parking,car,function(result){
+                    parkingLotMain.isParked(parking,car,function(result){
                         expect(result).to.equal(true);
                     })
                 })
