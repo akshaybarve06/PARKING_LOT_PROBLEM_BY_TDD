@@ -21,9 +21,10 @@ class ParkingLotMainClass{
 }  
     //Method To Remove Vehicle To Parking
     isUnparked=(vehicle)=>{
-        if( vehicle == null || vehicle == undefined)
+        if( vehicle == null || vehicle == undefined){
             throw new Error("Couldn't Unpark Car..Invalid Vehicle..")
-        else 
+            return false
+        }else 
             return true
     }
 }

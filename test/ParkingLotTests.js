@@ -3,6 +3,7 @@ let expect = require('chai').expect
 let chai = require('chai')
 let sinon = require('sinon')
 let parkingLotMain = require('../modules/ParkingLotMainClass')
+let owner = require('../modules/ParkingLotOwner')
 let car
 let parking =[]
 //Test Cases For Parking Lot System
@@ -12,6 +13,10 @@ describe(`Test Cases For Parking Lot System`, () =>
     beforeEach(()=>{
         car = new Object();
         parking =[];
+        let checkParkingFull=sinon.stub(owner,'checkParkingFull');
+    })
+    afterEach(()=>{
+        owner.checkParkingFull.restore();
     })
     // Test For Add Vehicle in Parking Lot
     it(`given car object when car is parked should return true`, () =>
@@ -39,10 +44,10 @@ describe(`Test Cases For Parking Lot System`, () =>
         })   
     })
     // Test For Possiblities To Remove Vehicle from Parking Lot
-    it(`given car object when invalid or car can't unparked should return exception`, () =>
+    it.only(`given car object when invalid or car can't unparked should return exception`, () =>
     {
         try{
-            parkingLotMain.isParked(parking,car,function(result){
+            parkingLotMain.isParked(parking,undefined,function(result){
                 let carParkedOrNot= parkingLotMain.isUnparked(undefined);
                 expect(carParkedOrNot).to.equal(true);
             })
@@ -51,7 +56,7 @@ describe(`Test Cases For Parking Lot System`, () =>
         }
     })
     // Test For Check The Parking Lot Is Full
-    it.only(`given car object when park if parking full should return parking full`, ()=>{
+    it(`given car object when park if parking full should return parking full`, ()=>{
         let carParkObject = sinon.spy()
         try{
             parkingLotMain.isParked(parking,carParkObject,function(result){
