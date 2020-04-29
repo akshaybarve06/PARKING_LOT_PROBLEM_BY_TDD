@@ -4,7 +4,7 @@ let chai = require('chai')
 let sinon = require('sinon')
 let parkingLotMain = require('../main/ParkingLotMainClass')
 let owner= require('../main/ParkingLotOwner')
-let car
+let car1=10,car2=20,car3=30,car
 let parking =[]
 //Test Cases For Parking Lot System
 describe(`Test Cases For Parking Lot System`, () =>
@@ -23,9 +23,13 @@ describe(`Test Cases For Parking Lot System`, () =>
     // Test For Add Vehicle in Parking Lot
     it(`given car object when car is parked should return true`, () =>
     {
-        parkingLotMain.isParked(parking,car,function(result){
+        try{
+            parkingLotMain.isParked(parking,car,function(result){
             expect(result).to.equal(true);
         });
+    }catch(e){
+        console.log(e.message)
+    }
     })
     // Test For Possiblities To Add Vehicle in Parking Lot
     it(`given car object when invalid and car is not parked should return exception`, () =>
@@ -41,10 +45,14 @@ describe(`Test Cases For Parking Lot System`, () =>
     // Test For Unpark Car from parking Lot
     it(`given car object when car is unpark then return true`, () =>
     {
-        parkingLotMain.isParked(parking,car,function(result){
+        try{
+            parkingLotMain.isParked(parking,car,function(result){
             let carParkedOrNot= parkingLotMain.isUnparked(car);
             expect(carParkedOrNot).to.equal(true);
-        })   
+        }) 
+        }catch(e){
+            console.log(e.message)
+        }  
     })
     // Test For Possiblities To Remove Vehicle from Parking Lot
     it(`given car object when invalid or car can't unparked should return exception`, () =>
@@ -62,9 +70,9 @@ describe(`Test Cases For Parking Lot System`, () =>
     it(`given car object when park if parking full should return parking full`, () =>
     {
         try{
-            parkingLotMain.isParked(parking,car,function(result){
-                parkingLotMain.isParked(parking,car,function(result){
-                    parkingLotMain.isParked(parking,car,function(result){
+            parkingLotMain.isParked(parking,car1,function(result){
+                parkingLotMain.isParked(parking,car2,function(result){
+                    parkingLotMain.isParked(parking,car3,function(result){
                         expect(result).to.equal(true);
                     })
                     expect(result).to.equal(true);
@@ -90,4 +98,17 @@ describe(`Test Cases For Parking Lot System`, () =>
             console.log(e.message)
         }
     })
+    //Test Case To Check Parking Lot Spaces 
+    it(`given car object when parking lot is not full then show spaces available`, () =>{
+        try{
+            parkingLotMain.isParked(parking,car1,function(result){
+            parkingLotMain.isParked(parking,car2,function(result){
+                let unparkResult=parkingLotMain.isUnparked(car2)
+                    expect(unparkResult).to.equal(true);
+            })
+        })
+        }catch(e){
+            console.log(e.message)
+        }
+})
 })

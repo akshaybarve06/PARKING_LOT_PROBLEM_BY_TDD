@@ -27,8 +27,11 @@ class ParkingLotMainClass
         isUnparked(vehicle){
         if( vehicle == null || vehicle == undefined)
             throw new Error("Couldn't Unpark Car..Invalid Vehicle..")
-        else 
+        else{
+            this.parking.pop(vehicle);
+            owner.checkSpaceAvailable();
             return true
+        } 
     };
 }
 module.exports=new ParkingLotMainClass;

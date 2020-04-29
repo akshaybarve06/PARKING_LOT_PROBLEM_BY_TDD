@@ -6,7 +6,7 @@ let parkingCapacity=2
 
 class ParkingLotOwner{
 
-// Method To Check if Parking Capacity os Reached
+    // Method To Check if Parking Capacity os Reached
     checkParkingFull(parking,callback)
     {
         if (parking.length == parkingCapacity)
@@ -18,6 +18,10 @@ class ParkingLotOwner{
         else{
             callback(true)
         }
+    }
+    // Method To Check Vacent Space is Available
+    checkSpaceAvailable(){
+        throw new Error(" Unparked Vehicle vacent space is there")
     }
 }
 module.exports =new ParkingLotOwner
