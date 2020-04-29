@@ -44,7 +44,7 @@ describe(`Test Cases For Parking Lot System`, () =>
         })   
     })
     // Test For Possiblities To Remove Vehicle from Parking Lot
-    it.only(`given car object when invalid or car can't unparked should return exception`, () =>
+    it(`given car object when invalid or car can't unparked should return exception`, () =>
     {
         try{
             parkingLotMain.isParked(parking,undefined,function(result){
@@ -56,7 +56,24 @@ describe(`Test Cases For Parking Lot System`, () =>
         }
     })
     // Test For Check The Parking Lot Is Full
-    it(`given car object when park if parking full should return parking full`, ()=>{
+    it.only(`given car object when park if parking full should return parking full`, ()=>{
+        let carParkObject = sinon.spy()
+        try{
+            parkingLotMain.isParked(parking,carParkObject,function(result){
+                parkingLotMain.isParked(parking,carParkObject,function(result){
+                    parkingLotMain.isParked(parking,carParkObject,function(result){
+                        expect(result).to.equal(true);
+                    })
+                    expect(result).to.equal(true);
+                })
+                expect(result).to.equal(true);
+            })
+            }catch(e){
+                console.log(e.message)
+            }
+    })
+    //Test For Checking If Parking Is Full and notify Airport Security
+    it.only(`given car object when parking is full then notify airport security return exception`, () =>{
         let carParkObject = sinon.spy()
         try{
             parkingLotMain.isParked(parking,carParkObject,function(result){
