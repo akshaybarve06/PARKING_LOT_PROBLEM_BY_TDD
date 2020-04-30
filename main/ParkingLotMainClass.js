@@ -65,5 +65,17 @@ class ParkingLotMainClass
         this.parking[index]=vehicle
         callback(true)
     }
+    findVehicle(vehicle,color,callback)
+    {
+        for(let index=1; index<parkingCapacity; index++ )
+        {
+            if (this.parking[index] == vehicle,color)
+            {
+                callback(true)
+            }
+            else
+                throw new Error("Couldn't Find Vehicle, Please Check Credentials..")
+        }
+    }
 }
 module.exports=new ParkingLotMainClass;
