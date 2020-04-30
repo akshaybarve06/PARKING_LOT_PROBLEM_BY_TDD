@@ -16,7 +16,6 @@ class ParkingLotMainClass
     //Method To Add Vehicle To Parking
     isParked(vehicle,callback)
     {
-        //return true
         if( vehicle == null || vehicle == undefined)
             throw new Error("Couldn't Park..Invalid Vehicle..")
         else 
@@ -53,9 +52,9 @@ class ParkingLotMainClass
         for(let index=1; index<=this.parking.length; index++)
         {
             if (this.parking[index] == undefined )
-                return index             
+                return index
         }
-        throw new Error("No Parking Slot Is Empty")  
+        throw new Error("No Parking Slot Is Empty")
     }
     // Method To Add Vehicle At Specific Slot
     addAtSpecific(index,vehicle,callback)
@@ -69,10 +68,9 @@ class ParkingLotMainClass
         for(var index=1; index<=this.parking.length; index++ )
         {
             if(this.parking[index]==vehicle)
-                return index;
-            else
-                throw new Error("This vehicle isn't park here, check credentials again")
+                return true;
         }
+        throw new Error("This vehicle isn't park here, check credentials again")
     }
 }
 module.exports=new ParkingLotMainClass;
