@@ -20,7 +20,8 @@ class ParkingLotMainClass
         //return true
         if( vehicle == null || vehicle == undefined)
             throw new Error("Couldn't Park..Invalid Vehicle..")
-        else {
+        else 
+        {
             // If Parking is not full then it will add vehicle
             if(owner.checkParkingFull(noOfVehicles,parkingCapacity)){
                 this.parking[noOfVehicles]=vehicle;
@@ -30,10 +31,12 @@ class ParkingLotMainClass
         }
     }
     //Method To Remove Vehicle To Parking
-        isUnparked(vehicle){
+    isUnparked(vehicle)
+    {
         if( vehicle == null || vehicle == undefined)
             throw new Error("Couldn't Unpark Car..Invalid Vehicle..")
-        else{
+        else
+        {
             for(let index=0; index<parkingCapacity; index++)
             {
                 if (this.parking[index] == vehicle )

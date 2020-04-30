@@ -18,7 +18,8 @@ class ParkingLotOwner{
     }
     
     // Method To Check Vacent Space is Available
-    checkSpaceAvailable(slotNumber){
+    checkSpaceAvailable(slotNumber)
+    {
         throw new Error("Unparked Vehicle.., vacent space is at slot Number :"+slotNumber)
     }
 }

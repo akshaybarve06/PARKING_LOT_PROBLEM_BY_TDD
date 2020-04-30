@@ -3,7 +3,8 @@
 class AirportSecurity{
 
     // Method To Send Notifation TO Airport When Parking Is Full
-    sendNotification=function(result){
+    sendNotification=function(result)
+    {
         if (result==false)
             throw new Error("Notification From Parking Lot : Parking Is Full..!")
     }

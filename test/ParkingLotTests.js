@@ -4,6 +4,7 @@ let chai = require('chai')
 let sinon = require('sinon')
 let parkingLotMain = require('../main/ParkingLotMainClass')
 let owner= require('../main/ParkingLotOwner')
+let parkingAttendent=require('../main/ParkingAttendant')
 
 //Test Cases For Parking Lot System
 describe(`Test Cases For Parking Lot System`, () =>
@@ -26,11 +27,12 @@ describe(`Test Cases For Parking Lot System`, () =>
     it(`given car object when car is parked should return true`, ()=>
     {
         try{
-        parkingLotMain.isParked(car1,function(result){
-            expect(result).to.equal(true);
-        }) }catch(e){
-                console.log(e.message);
-            }
+            parkingLotMain.isParked(car1,function(result){
+                expect(result).to.equal(true);
+            }) 
+        }catch(e){
+            console.log(e.message);
+        }
     })
     // Test For Possiblities To Add Vehicle in Parking Lot
     it(`given car object when invalid and car is not parked should return exception`, ()=>
@@ -50,7 +52,7 @@ describe(`Test Cases For Parking Lot System`, () =>
             parkingLotMain.isParked(car2,function(result){
                 let carParkedOrNot= parkingLotMain.isUnparked(car2);
                 expect(carParkedOrNot).to.equal(true);
-        }) 
+            }) 
         }catch(e){
             console.log(e.message)
         }  
@@ -81,7 +83,7 @@ describe(`Test Cases For Parking Lot System`, () =>
         }
     })
     //Test For Checking If Parking Is Full and notify Airport Security
-    it(`given car object when parking is full then notify airport security return exception`,()=>
+    it(`given car object when parking is full then notify airport security return exception`, ()=>
     {
         try{
             parkingLotMain.isParked(car6,function(result){
@@ -102,9 +104,24 @@ describe(`Test Cases For Parking Lot System`, () =>
                     let unparkResult=parkingLotMain.isUnparked(car9)
                         expect(unparkResult).to.equal(true);
                     })
+            })
+        }catch(e){
+            console.log(e.message)
+        }
+    })
+    // Test Case To Take Decisions Where To Park Cars
+    it.only(`given car object when parking lot has space attendent park car`, ()=>
+    {
+        try{
+            parkingAttendent.checkVacentSlot(function(result){
+                let position=result;
+            parkingLotMain.addAtSpecific(position,car10,function(result){
+                expect(result).to.equal(true);
+            })
         })
         }catch(e){
             console.log(e.message)
         }
     })
+
 })
