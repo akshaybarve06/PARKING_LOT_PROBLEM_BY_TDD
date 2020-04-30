@@ -110,7 +110,7 @@ describe(`Test Cases For Parking Lot System`, () =>
         }
     })
     // Test Case To Take Decisions Where To Park Cars
-    it.only(`given car object when parking lot has space attendent park car`, ()=>
+    it.only(`given car object when parking lot has space, attendent will park car`, ()=>
     {
         try{
             parkingAttendent.checkVacentSlot(function(result){

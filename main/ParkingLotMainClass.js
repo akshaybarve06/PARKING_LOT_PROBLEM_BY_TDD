@@ -48,5 +48,22 @@ class ParkingLotMainClass
             } 
         }
     }
+    // Method TO Check Empty Slot
+    emptySlots()
+    {
+        for(let index=0; index<parkingCapacity; index++)
+            {
+                if (this.parking[index] == ',')
+                    return index
+                else
+                    throw new Error("No Slot is Empty")
+            }
+    }
+    // Method To Add Vehicle At Specific Slot
+    addAtSpecific(index,vehicle,callback)
+    {
+        this.parking[index]=vehicle
+        callback(true)
+    }
 }
 module.exports=new ParkingLotMainClass;
