@@ -65,14 +65,13 @@ class ParkingLotMainClass
         this.parking[index]=vehicle
         callback(true)
     }
+    // Method For Finding Vehicle In Parking Lot
     findVehicle(vehicle,color,callback)
     {
         for(let index=1; index<parkingCapacity; index++ )
         {
             if (this.parking[index] == vehicle,color)
-            {
                 callback(true)
-            }
             else
                 throw new Error("Couldn't Find Vehicle, Please Check Credentials..")
         }
