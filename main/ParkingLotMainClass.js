@@ -4,14 +4,13 @@
 let owner=require('./ParkingLotOwner')
 
 // Requred Variables
-let vehicle,color
 let parkingCapacity=20
 var noOfVehicles=1
 
 class ParkingLotMainClass
 {
     constructor(){
-        this.parking=[[vehicle,color]];
+        this.parking=[];
     }
 
     //Method To Add Vehicle To Parking
@@ -37,7 +36,7 @@ class ParkingLotMainClass
             throw new Error("Couldn't Unpark Car..Invalid Vehicle..")
         else
         {
-            for(let index=0; index<parkingCapacity; index++)
+            for(let index=1; index<=this.parking.length; index++)
             {
                 if (this.parking[index] == vehicle )
                 {
@@ -51,13 +50,12 @@ class ParkingLotMainClass
     // Method TO Check Empty Slot
     emptySlots()
     {
-        for(let index=0; index<parkingCapacity; index++)
+        for(let index=1; index<=this.parking.length; index++)
         {
-            if (this.parking[index] == ',')
-                return index
-            else
-                throw new Error("No Slot is Empty")
+            if (this.parking[index] == undefined )
+                return index             
         }
+        throw new Error("No Parking Slot Is Empty")  
     }
     // Method To Add Vehicle At Specific Slot
     addAtSpecific(index,vehicle,callback)
@@ -66,14 +64,14 @@ class ParkingLotMainClass
         callback(true)
     }
     // Method For Finding Vehicle In Parking Lot
-    findVehicle(vehicle,color,callback)
+    findVehicle(vehicle)
     {
-        for(let index=1; index<parkingCapacity; index++ )
+        for(var index=1; index<=this.parking.length; index++ )
         {
-            if (this.parking[index] == vehicle,color)
-                callback(true)
+            if(this.parking[index]==vehicle)
+                return index;
             else
-                throw new Error("Couldn't Find Vehicle, Please Check Credentials..")
+                throw new Error("This vehicle isn't park here, check credentials again")
         }
     }
 }
