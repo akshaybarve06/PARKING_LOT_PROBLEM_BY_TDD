@@ -52,12 +52,12 @@ class ParkingLotMainClass
     emptySlots()
     {
         for(let index=0; index<parkingCapacity; index++)
-            {
-                if (this.parking[index] == ',')
-                    return index
-                else
-                    throw new Error("No Slot is Empty")
-            }
+        {
+            if (this.parking[index] == ',')
+                return index
+            else
+                throw new Error("No Slot is Empty")
+        }
     }
     // Method To Add Vehicle At Specific Slot
     addAtSpecific(index,vehicle,callback)

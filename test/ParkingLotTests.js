@@ -11,16 +11,16 @@ describe(`Test Cases For Parking Lot System`, () =>
 {
     // Run Before Each Test Execution
     beforeEach(()=>{
-        car1 = ["MH 15 XX 0000","A"]
-        car2 = ["MH 15 XX 1111","B"]
-        car3 = ["MH 15 XX 2222","C"]
-        car4 = ["MH 15 XX 3333","D"]
-        car5 = ["MH 15 XX 4444","E"]
-        car6 = ["MH 15 YY 5555","F"]
-        car7 = ["MH 15 YY 6666","G"]
-        car8 = ["MH 15 YY 7777","H"]
-        car9 = ["MH 15 ZZ 8888","I"]
-        car10 = ["MH 15 ZZ 9999","J"]
+        car1 = ["MH.15.XX.0000","White"]
+        car2 = ["MH.15.XX.1111","Yello"]
+        car3 = ["MH.15.XX.2222","Cyan"]
+        car4 = ["MH.15.XX.3333","Black"]
+        car5 = ["MH.15.XX.4444","Red"]
+        car6 = ["MH.15.YY.5555","Orange"]
+        car7 = ["MH.15.YY.6666","Green"]
+        car8 = ["MH.15.YY.7777","Blue"]
+        car9 = ["MH.15.ZZ.8888","Indigo"]
+        car10 = ["MH.15.ZZ.9999","Gray"]
     })
           
     // Test For Add Vehicle in Parking Lot
@@ -110,7 +110,7 @@ describe(`Test Cases For Parking Lot System`, () =>
         }
     })
     // Test Case To Take Decisions Where To Park Cars
-    it.only(`given car object when parking lot has space, attendent will park car`, ()=>
+    it(`given car object when parking lot has space, attendent will park car`, ()=>
     {
         try{
             parkingAttendent.checkVacentSlot(function(result){
@@ -123,5 +123,15 @@ describe(`Test Cases For Parking Lot System`, () =>
             console.log(e.message)
         }
     })
-
+    // Test Case To Find Vehicle From Parking Lot
+    it(`given car if found in parking lot should return true`, ()=>
+    {
+        try{
+            parkingLotMain.findVehicle("MH.15.XX.4444","Red",function(result){
+                expect(result).to.equal(true);
+            })
+        }catch(e){
+            console.log(e.message)
+        }
+    })
 })
