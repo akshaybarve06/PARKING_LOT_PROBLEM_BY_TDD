@@ -2,26 +2,24 @@
 let airportSecurity=require('./AirportSecurity')
 
  //Temporary Parking Capacity To Check If Parking is Full or not
-let parkingCapacity=2
 
 class ParkingLotOwner{
 
     // Method To Check if Parking Capacity os Reached
-    checkParkingFull(parking,callback)
+    checkParkingFull(parkedVehicles,parkingCapacity)
     {
-        if (parking.length == parkingCapacity)
+        if (parkedVehicles == parkingCapacity)
         {
-            // Sending Notification To Airport Security
             airportSecurity.sendNotification(false)
-            callback(false)
+            return false
         }
-        else{
-            callback(true)
-        }
+        else
+            return true
     }
+    
     // Method To Check Vacent Space is Available
-    checkSpaceAvailable(){
-        throw new Error(" Unparked Vehicle vacent space is there")
+    checkSpaceAvailable(slotNumber){
+        throw new Error("Unparked Vehicle.., vacent space is at slot Number :"+slotNumber)
     }
 }
 module.exports =new ParkingLotOwner

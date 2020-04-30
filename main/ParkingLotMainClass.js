@@ -1,37 +1,49 @@
 // Main Class For Parking Lot System
 
+// Necessary Imports
 let owner=require('./ParkingLotOwner')
 
-let parkingCapacity=20;
+// Requred Variables
+let vehicle,color
+let parkingCapacity=20
+var noOfVehicles=1
 
 class ParkingLotMainClass
 {
     constructor(){
-        this.parking=[]
+        this.parking=[[vehicle,color]];
     }
+
     //Method To Add Vehicle To Parking
-    isParked(parking,vehicle,callback)
+    isParked(vehicle,callback)
     {
+        //return true
         if( vehicle == null || vehicle == undefined)
             throw new Error("Couldn't Park..Invalid Vehicle..")
         else {
             // If Parking is not full then it will add vehicle
-            owner.checkParkingFull(parking,function(result){
-            if(result == true){
-                parking.push(vehicle)
-                callback(result)}     
-            })
+            if(owner.checkParkingFull(noOfVehicles,parkingCapacity)){
+                this.parking[noOfVehicles]=vehicle;
+                noOfVehicles++;
+                callback(true)
+            }
         }
-    }  
+    }
     //Method To Remove Vehicle To Parking
         isUnparked(vehicle){
         if( vehicle == null || vehicle == undefined)
             throw new Error("Couldn't Unpark Car..Invalid Vehicle..")
         else{
-            this.parking.pop(vehicle);
-            owner.checkSpaceAvailable();
-            return true
-        } 
-    };
+            for(let index=0; index<parkingCapacity; index++)
+            {
+                if (this.parking[index] == vehicle )
+                {
+                    delete this.parking[index];
+                    owner.checkSpaceAvailable(index);
+                    return true
+                }
+            } 
+        }
+    }
 }
 module.exports=new ParkingLotMainClass;
