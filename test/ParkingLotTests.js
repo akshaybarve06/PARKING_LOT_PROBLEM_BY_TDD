@@ -12,8 +12,10 @@ describe(`Test Cases For Parking Lot System`, () =>
 {
     // Run Before Each Test Execution
     beforeEach(()=>{
-        car11={vehicleNumber:"MH.15.ZZ.1010",color:"Pink",parkTime:Date()}
-
+        sinon.stub(owner,'checkParkingFull');
+    })
+    afterEach(()=>{
+        owner.checkParkingFull.restore();
     })
           
     // Test For Add Vehicle in Parking Lot
@@ -136,6 +138,7 @@ describe(`Test Cases For Parking Lot System`, () =>
             console.log(e.message)
         }
     })
+    // When Car Parked In Lot Owner Want To Get Details of that vehicle
     it(`given car object if park show parking details of that vehicle`, ()=>
     {
         try{

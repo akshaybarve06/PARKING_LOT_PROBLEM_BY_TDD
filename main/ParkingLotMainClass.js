@@ -67,8 +67,10 @@ class ParkingLotMainClass
     {
         for(var index=1; index<=this.parking.length; index++ )
         {
-            if(this.parking[index]==vehicle)
+            if(this.parking[index]==vehicle){
+                console.log("Vehicle Found At Lot Number.."+index)
                 return true;
+            }
         }
         throw new Error("This vehicle isn't park here, check credentials again")
     }
