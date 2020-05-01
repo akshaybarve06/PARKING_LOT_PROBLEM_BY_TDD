@@ -4,15 +4,15 @@
 let owner=require('./ParkingLotOwner')
 
 // Requred Variables
-let parkingCapacity=20
-var noOfVehicles=1
+let parkingCapacity=2
+let noOfVehicles=0
+let index=[]
 
 class ParkingLotMainClass
 {
     constructor(){
-        this.parking=[];
+        this.parking=[[],[],[],[]];
     }
-
     //Method To Add Vehicle To Parking
     isParked(vehicle,callback)
     {
@@ -21,9 +21,11 @@ class ParkingLotMainClass
         else 
         {
             // If Parking is not full then it will add vehicle
-            if(owner.checkParkingFull(noOfVehicles,parkingCapacity)){
-                this.parking[noOfVehicles]=vehicle;
-                noOfVehicles++;
+            if(owner.checkParkingFull(noOfVehicles,parkingCapacity))
+            {
+                index=this.checkForParkingSlot(undefined)
+                this.parking[index[0]][index[1]]=vehicle
+                noOfVehicles++
                 callback(true)
             }
         }
@@ -34,45 +36,53 @@ class ParkingLotMainClass
         if( vehicle == null || vehicle == undefined)
             throw new Error("Couldn't Unpark Car..Invalid Vehicle..")
         else
-        {
-            for(let index=1; index<=this.parking.length; index++)
-            {
-                if (this.parking[index] == vehicle )
-                {
-                    delete this.parking[index];
-                    owner.checkSpaceAvailable(index);
-                    return true
-                }
-            } 
-        }
+        {   
+            index=this.checkForParkingSlot(vehicle)
+            delete this.parking[index[0]][index[1]]
+            noOfVehicles--
+            owner.checkSpaceAvailable(vehicle,[index[0]],[index[1]])
+            return true
+       }
     }
     // Method TO Check Empty Slot
     emptySlots()
     {
-        for(let index=1; index<=this.parking.length; index++)
-        {
-            if (this.parking[index] == undefined )
-                return index
-        }
-        throw new Error("No Parking Slot Is Empty")
+        index=this.checkForParkingSlot(undefined)
+        return index
     }
     // Method To Add Vehicle At Specific Slot
     addAtSpecific(index,vehicle,callback)
     {
-        this.parking[index]=vehicle
+        this.parking[index[0]][index[1]]=vehicle
+        noOfVehicles++
         callback(true)
     }
     // Method For Finding Vehicle In Parking Lot
     findVehicle(vehicle)
     {
-        for(var index=1; index<=this.parking.length; index++ )
+        index=this.checkForParkingSlot(vehicle)
+        if(this.parking[index[0]][index[1]]==vehicle)
         {
-            if(this.parking[index]==vehicle){
-                console.log("Vehicle Found At Lot Number.."+index)
-                return true;
+            console.log("Vehicle Found At Lot Number.."+index[0]+" and Slot Number,"+index[1])
+            return true
+        }
+        else
+            throw new Error("This vehicle isn't park here, check credentials again")
+    }
+    // Method To Check Availability of Input Vehicle
+    checkForParkingSlot(vehicle)
+    {
+        for(let rowIndex=0; rowIndex < parkingCapacity; rowIndex++ )
+        {
+            for(let columnIndex=0; columnIndex < parkingCapacity; columnIndex++ )
+            {
+                if (this.parking[rowIndex][columnIndex] == vehicle ){
+                    var arr=[rowIndex,columnIndex]
+                    return arr
+                }
             }
         }
-        throw new Error("This vehicle isn't park here, check credentials again")
+        throw new Error("Couldn't Add, Remove or Found Specific Vehicle")
     }
 }
 module.exports=new ParkingLotMainClass;

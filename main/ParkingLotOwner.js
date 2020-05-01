@@ -8,7 +8,7 @@ class ParkingLotOwner{
     // Method To Check if Parking Capacity os Reached
     checkParkingFull(parkedVehicles,parkingCapacity)
     {
-        if (parkedVehicles == parkingCapacity)
+        if (parkedVehicles == parkingCapacity*parkingCapacity)
         {
             airportSecurity.sendNotification(false)
             return false
@@ -18,9 +18,9 @@ class ParkingLotOwner{
     }
     
     // Method To Check Vacent Space is Available
-    checkSpaceAvailable(slotNumber)
+    checkSpaceAvailable(vehicle,lotNumber,slotNumber)
     {
-        throw new Error("Unparked Vehicle.., vacent space is at slot Number :"+slotNumber)
+        throw new Error("Unparked.."+vehicle+" vacent space is at Lot Number:"+lotNumber+" and Lot Number :"+slotNumber)
     }
 }
 module.exports =new ParkingLotOwner
