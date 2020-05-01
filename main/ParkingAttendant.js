@@ -10,5 +10,11 @@ class ParkingAttendant
         let indexReceived=mainClassObject.emptySlots()
         callback(indexReceived)
     }
+    // Method To Find Nearest Parking Slot Available
+    checkNearestSlot(callback)
+    {
+        let nearestSlot=mainClassObject.findNearestSlot(undefined)
+        callback(nearestSlot)
+    }
 }
 module.exports=new ParkingAttendant;

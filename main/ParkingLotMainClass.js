@@ -4,7 +4,7 @@
 let owner=require('./ParkingLotOwner')
 
 // Requred Variables
-let parkingCapacity=2
+let parkingCapacity=6
 let noOfVehicles=0
 let index=[]
 
@@ -14,7 +14,7 @@ class ParkingLotMainClass
         this.parking=[[],[],[],[]];
     }
     //Method To Add Vehicle To Parking
-    isParked(vehicle,callback)
+    isParked(vehicle,driverType,callback)
     {
         if( vehicle == null || vehicle == undefined)
             throw new Error("Couldn't Park..Invalid Vehicle..")
@@ -23,7 +23,10 @@ class ParkingLotMainClass
             // If Parking is not full then it will add vehicle
             if(owner.checkParkingFull(noOfVehicles,parkingCapacity))
             {
-                index=this.checkForParkingSlot(undefined)
+                if(driverType=='Handicap')
+                    index=this.findNearestSlot(undefined)
+                else
+                    index=this.checkForParkingSlot(undefined)
                 this.parking[index[0]][index[1]]=vehicle
                 noOfVehicles++
                 callback(true)
@@ -68,6 +71,23 @@ class ParkingLotMainClass
         }
         else
             throw new Error("This vehicle isn't park here, check credentials again")
+    }
+    //Method To Check Nearest Slot in Parking
+    findNearestSlot(vehicle)
+    {
+        for(let rowIndex=0; rowIndex < (parkingCapacity/2); rowIndex++ )
+        {
+            for(let columnIndex=0; columnIndex < parkingCapacity; columnIndex++ )
+            {
+                if (this.parking[rowIndex][columnIndex] == vehicle )
+                {
+                    var arr=[rowIndex,columnIndex]
+                    console.log("Driver Is Handicap added at.."+rowIndex+","+columnIndex)
+                    return arr
+                }
+            }
+        }
+        throw new Error("Couldn't Find Nearest Slot")
     }
     // Method To Check Availability of Input Vehicle
     checkForParkingSlot(vehicle)
