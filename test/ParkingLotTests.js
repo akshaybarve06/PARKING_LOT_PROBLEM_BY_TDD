@@ -10,13 +10,13 @@ let car0,car1,car2,car3,car4,car5,car6,car7,car8,car9,car10;
 //Test Cases For Parking Lot System
 describe(`Test Cases For Parking Lot System`, () =>
 {
-/*    // Run Before Each Test Execution
+    // Run Before Each Test Execution
     beforeEach(()=>{
         sinon.stub(owner,'checkParkingFull');
     })
     afterEach(()=>{
         owner.checkParkingFull.restore();
-    })    */
+    })
     // Test For Add Vehicle in Parking Lot
     it(`given car object when car is parked should return true`, ()=>
     {

@@ -4,7 +4,7 @@
 let owner=require('./ParkingLotOwner')
 
 // Requred Variables
-let parkingCapacity=6
+let parkingCapacity=4
 let noOfVehicles=0
 let index=[]
 
@@ -87,7 +87,8 @@ class ParkingLotMainClass
                 }
             }
         }
-        throw new Error("Couldn't Find Nearest Slot")
+        this.checkForParkingSlot(vehicle)
+        throw new Error("Couldn't Find Nearest Slot Adding At Available Slot")      
     }
     // Method To Check Availability of Input Vehicle
     checkForParkingSlot(vehicle)
