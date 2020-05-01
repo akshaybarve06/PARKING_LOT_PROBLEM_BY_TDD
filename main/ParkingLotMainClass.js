@@ -76,7 +76,8 @@ class ParkingLotMainClass
         {
             for(let columnIndex=0; columnIndex < parkingCapacity; columnIndex++ )
             {
-                if (this.parking[rowIndex][columnIndex] == vehicle ){
+                if (this.parking[rowIndex][columnIndex] == vehicle )
+                {
                     var arr=[rowIndex,columnIndex]
                     return arr
                 }
