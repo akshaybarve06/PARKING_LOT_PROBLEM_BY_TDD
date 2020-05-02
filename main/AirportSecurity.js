@@ -1,7 +1,7 @@
 // Airport Security Class To Send Notification To Airport If Parking is Full
 
-class AirportSecurity{
-
+class AirportSecurity
+{
     // Method To Send Notifation TO Airport When Parking Is Full
     sendNotification=function(result)
     {

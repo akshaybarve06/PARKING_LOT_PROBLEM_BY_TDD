@@ -1,7 +1,6 @@
 // Class of Parking Lot Owner To Check if Parking Is FULL
-let airportSecurity=require('./AirportSecurity')
 
- //Temporary Parking Capacity To Check If Parking is Full or not
+let airportSecurity=require('./AirportSecurity')
 
 class ParkingLotOwner
 {
@@ -18,9 +17,9 @@ class ParkingLotOwner
     }
     
     // Method To Check Vacent Space is Available
-    checkSpaceAvailable(vehicle,lotNumber,slotNumber)
+    checkSpaceAvailable(vehicle)
     {
-        console.log("Unparked.."+vehicle+" vacent space is at Lot Number:"+lotNumber+" and Lot Number :"+slotNumber)
+        throw new Error("Unparked.."+vehicle)
     }
 }
 module.exports =new ParkingLotOwner

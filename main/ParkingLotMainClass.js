@@ -5,7 +5,7 @@ let owner=require('./ParkingLotOwner')
 
 // Requred Variables
 let parkingCapacity=4
-let noOfVehicles=0
+let noOfVehicles=0;
 let index=[]
 
 class ParkingLotMainClass
@@ -14,16 +14,16 @@ class ParkingLotMainClass
         this.parking=[[],[],[],[]];
     }
     //Method To Add Vehicle To Parking
-    isParked(vehicle,driverType,callback)
+    isParked(vehicle,callback)
     {
         if( vehicle == null || vehicle == undefined)
-            throw new Error("Couldn't Park..Invalid Vehicle..")
+            throw new Error("Could not Park..Invalid Vehicle..")
         else 
         {
             // If Parking is not full then it will add vehicle
             if(owner.checkParkingFull(noOfVehicles,parkingCapacity))
             {
-                if(driverType=='Handicap')
+                if(vehicle.driverType=='Handicap')
                     index=this.findNearestSlot(undefined)
                 else
                     index=this.checkForParkingSlot(undefined)
@@ -37,7 +37,7 @@ class ParkingLotMainClass
     isUnparked(vehicle)
     {
         if( vehicle == null || vehicle == undefined)
-            throw new Error("Couldn't Unpark Car..Invalid Vehicle..")
+            throw new Error("Could not Unpark..Invalid Vehicle..")
         else
         {   
             index=this.checkForParkingSlot(vehicle)
@@ -65,12 +65,9 @@ class ParkingLotMainClass
     {
         index=this.checkForParkingSlot(vehicle)
         if(this.parking[index[0]][index[1]]==vehicle)
-        {
-            console.log("Vehicle Found At Lot Number.."+index[0]+" and Slot Number,"+index[1])
             return true
-        }
         else
-            throw new Error("This vehicle isn't park here, check credentials again")
+            throw new Error("This vehicle is not park here, check credentials again")
     }
     //Method To Check Nearest Slot in Parking
     findNearestSlot(vehicle)
@@ -82,7 +79,6 @@ class ParkingLotMainClass
                 if (this.parking[rowIndex][columnIndex] == vehicle )
                 {
                     var arr=[rowIndex,columnIndex]
-                    console.log("Driver Is Handicap added at.."+rowIndex+","+columnIndex)
                     return arr
                 }
             }
@@ -93,9 +89,9 @@ class ParkingLotMainClass
     // Method To Check Availability of Input Vehicle
     checkForParkingSlot(vehicle)
     {
-        for(let rowIndex=0; rowIndex < parkingCapacity; rowIndex++ )
+        for(let rowIndex=0; rowIndex < this.parking.length; rowIndex++ )
         {
-            for(let columnIndex=0; columnIndex < parkingCapacity; columnIndex++ )
+            for(let columnIndex=0; columnIndex < this.parking.length; columnIndex++ )
             {
                 if (this.parking[rowIndex][columnIndex] == vehicle )
                 {
@@ -105,6 +101,9 @@ class ParkingLotMainClass
             }
         }
         throw new Error("Couldn't Add, Remove or Found Specific Vehicle")
+    }
+    consi(){
+        console.log("Paarkinfnfff...."+this.parking)
     }
 }
 module.exports=new ParkingLotMainClass;
