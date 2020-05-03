@@ -8,14 +8,10 @@ class ParkingLotOwner
     checkParkingFull(parkedVehicles,parkingCapacity)
     {
         if (parkedVehicles == parkingCapacity*parkingCapacity)
-        {
             airportSecurity.sendNotification(false)
-            return false
-        }
         else
             return true
-    }
-    
+    }   
     // Method To Check Vacent Space is Available
     checkSpaceAvailable(vehicle)
     {

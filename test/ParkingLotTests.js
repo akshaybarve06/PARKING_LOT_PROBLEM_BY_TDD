@@ -18,7 +18,7 @@ describe(`Test Cases For Parking Lot System`, () =>
         owner.checkParkingFull.restore();
     })
     // Test For Add Vehicle in Parking Lot
-    it(`given car when car is parked should return true`, ()=>
+    it(`given car object when car is parked should return true`, ()=>
     {       
         try{
             parkingLotMain.isParked(cars.car0,function(returnResult){
@@ -29,7 +29,7 @@ describe(`Test Cases For Parking Lot System`, () =>
         }
     })
     // Test For Possiblities To Add Vehicle in Parking Lot
-    it(`given car when invalid and car is not parked should return exception`, ()=>
+    it(`given car object when it is invalid and car is not parked should return exception`, ()=>
     {
         try{
             parkingLotMain.isParked(null,function(returnResult){
@@ -40,7 +40,7 @@ describe(`Test Cases For Parking Lot System`, () =>
         }
     })
     // Test For Unpark Car from parking Lot
-    it(`given car when car is unpark then return true`, ()=>
+    it(`given car object when car is unpark from lot should return true`, ()=>
     {
         try{
             parkingLotMain.isParked(cars.car1,function(returnResult){
@@ -52,7 +52,7 @@ describe(`Test Cases For Parking Lot System`, () =>
         }  
     })
     // Test For Possiblities To Remove Vehicle from Parking Lot
-    it(`given car when invalid or car can't unparked should return exception`, ()=>
+    it(`given car object when invalid or car can't unparked should return exception`, ()=>
     {
         try{
             parkingLotMain.isParked(cars.car2,function(returnResult){
@@ -64,7 +64,7 @@ describe(`Test Cases For Parking Lot System`, () =>
         }
     })
     // Test For Check The Parking Lot Is Full if Full Notify Owner and Airport
-    it(`given car  when park if parking full should return parking full`, ()=>
+    it(`given car object when park if parking full should return parking full`, ()=>
     {
         let allCars=[cars.car3,cars.car4,cars.car5]
         try{
@@ -77,15 +77,18 @@ describe(`Test Cases For Parking Lot System`, () =>
             assert.equal(e.message,"Notification From Parking Lot : Parking Is Full..!")
         }
     })
+})
+
+describe(`Test Cases For Parking Lot System With Additional Functions`, () =>
+{
     //Test Case To Check Parking Lot Spaces 
-    it(`given car when parking lot is not full then show spaces available`, ()=>
+    it(`given car object when parking lot is not full on unpark return unpark space`, ()=>
     {
         let allCars=[cars.car6,cars.car7,cars.car8]
         try{
             allCars.forEach(car =>{
                 parkingLotMain.isParked(car,function(returnResult){
                     let unparkResult=parkingLotMain.isUnparked(allCars.car8)
-                        parkingLotMain.consi()
                         expect(unparkResult).to.equal(true);
                     })
             })
@@ -93,12 +96,8 @@ describe(`Test Cases For Parking Lot System`, () =>
             assert.equal(e.message,"Could not Unpark..Invalid Vehicle..")
         }
     })  
-})
-
-describe(`Test Cases For Parking Lot System With Additional Functions`, () =>
-{
      // Test Case To Take Decisions Where To Park Cars
-     it(`given car when parking lot has space, attendent will park car`, ()=>
+     it(`given car object when parking lot has space attendent check vacent slot and park car`, ()=>
      {
          try{
              parkingAttendent.checkVacentSlot(function(returnResult){
@@ -111,27 +110,27 @@ describe(`Test Cases For Parking Lot System With Additional Functions`, () =>
          }
      })
      // Test Case To Find Vehicle From Parking Lot
-     it(`given car if found in parking lot should return true`, ()=>
+     it(`given car object when found in parking lot should return true`, ()=>
      {
          try{
-             let returnResult=parkingLotMain.findVehicle(cars.car3);
+             let returnResult=parkingLotMain.findVehicle(cars.car6);
                  expect(returnResult).to.equal(true);
          }catch(e){
              assert.equal(e.message,"This vehicle is not park here, check credentials again")
          }
      })
      // When Car Parked In Lot Owner Want To Get Details of that vehicle
-     it(`given car if park show parking details of that vehicle`, ()=>
+     it(`given car object if park show parking time of vehicle should return true`, ()=>
      {
          try{
-             let returnResult=parkingLotMain.findVehicle(cars.car4);
+             let returnResult=parkingLotMain.findVehicle(cars.car9);
              expect(returnResult).to.be.equal(true)
          }catch(e){
              assert.equal(e.message,"This vehicle is not park here, check credentials again")
          }
      })
      // Test Case To Find Nearest Slot In Parking To Park Car of Handicap Driver
-     it(`given car of handicap driver when parking lot has space, attendent will park car at nearest slot`, ()=>
+     it(`given car object of handicap driver when parking lot has space, attendent will park car at nearest slot return true`, ()=>
      {
          try{
              parkingAttendent.checkNearestSlot(function(returnResult){
@@ -140,7 +139,7 @@ describe(`Test Cases For Parking Lot System With Additional Functions`, () =>
              })
          })
          }catch(e){
-             assert.equal(e.message,"Couldn't Add, Remove or Found Specific Vehicle")
+             assert.equal(e.message,"Couldn't Find Nearest Slot Adding At Available Slot")
          }
      })
 })

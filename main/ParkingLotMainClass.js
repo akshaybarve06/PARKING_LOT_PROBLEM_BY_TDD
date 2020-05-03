@@ -4,7 +4,7 @@
 let owner=require('./ParkingLotOwner')
 
 // Requred Variables
-let parkingCapacity=4
+let parkingCapacity=3
 let noOfVehicles=0;
 let index=[]
 
@@ -100,10 +100,6 @@ class ParkingLotMainClass
                 }
             }
         }
-        throw new Error("Couldn't Add, Remove or Found Specific Vehicle")
-    }
-    consi(){
-        console.log("Paarkinfnfff...."+this.parking)
     }
 }
 module.exports=new ParkingLotMainClass;
