@@ -90,7 +90,10 @@ class ParkingLotMainClass
                 }
             }
         }
-        return true
+        if (arr.length > 0 )
+            return true
+        else
+            throw new Error("No White Car Parked Here")
     }
     //Method To Check Nearest Slot in Parking
     findNearestSlot(vehicle)
