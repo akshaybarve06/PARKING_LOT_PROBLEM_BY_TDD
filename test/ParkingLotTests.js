@@ -142,8 +142,8 @@ describe(`Test Cases For Parking Lot System With Additional Functions`, () =>
              assert.equal(e.message,"Couldn't Find Nearest Slot Adding At Available Slot")
          }
      })
-     // Test Case To Check if Vehicle is Large then it will find Largest slot and park in that
-     it(`given car object when car is large,attendent will park car at largest slot`, ()=>
+    // Test Case To Check if Vehicle is Large then it will find Largest slot and park in that
+    it(`given car object when car is large,attendent will park car at largest slot`, ()=>
     {
         try{
             parkingLotMain.isParked(cars.car11,function(returnResult){
@@ -151,6 +151,17 @@ describe(`Test Cases For Parking Lot System With Additional Functions`, () =>
             })
         }catch(e){
             assert.equal(e.message,"Couldn't find Largest Slot")
+        }
+    })
+    // Test Case To Find Cars of White Color In Parking Lot To Detect Bomb
+    it.only(`given car object of white color car when in parking match shoult return true`,()=>
+    {
+        try{
+            parkingLotMain.findCarByColor('White',function(returnResult){
+                expect(returnResult).to.equal(true)
+            })
+        }catch(e){
+            assert.equal(e.message,"No White Car Parked Here")
         }
     })
 })
