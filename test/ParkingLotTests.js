@@ -154,7 +154,7 @@ describe(`Test Cases For Parking Lot System With Additional Functions`, () =>
         }
     })
     // Test Case To Find Cars of White Color In Parking Lot To Detect Bomb
-    it.only(`given car object of white color car when in parking match shoult return true`,()=>
+    it(`given car object of white color car when in parking match shoult return true`,()=>
     {
         try{
             parkingLotMain.findCarByColor('White',function(returnResult){

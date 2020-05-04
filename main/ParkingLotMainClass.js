@@ -6,7 +6,7 @@ let owner=require('./ParkingLotOwner')
 // Requred Variables
 let parkingCapacity=3
 let noOfVehicles=0,spaceCount=0, finalSpaceCount=0, rowIndex,columnIndex;
-let index=[]
+let index=[],arr=[]
 
 class ParkingLotMainClass
 {
@@ -72,6 +72,25 @@ class ParkingLotMainClass
             return true
         else
             throw new Error("This vehicle is not park here, check credentials again")
+    }
+    findCarByColor(vehicleColor)
+    {
+        let index=0
+        for(rowIndex=0; rowIndex < this.parking.length; rowIndex++ )
+        {
+            for(columnIndex=0; columnIndex < this.parking.length; columnIndex++ )
+            {
+                if(this.parking[rowIndex][columnIndex]!=undefined)
+                {
+                    if (this.parking[rowIndex][columnIndex].color == vehicleColor )
+                    {
+                        arr[index]=[rowIndex,columnIndex]
+                        index++
+                    }
+                }
+            }
+        }
+        return true
     }
     //Method To Check Nearest Slot in Parking
     findNearestSlot(vehicle)
