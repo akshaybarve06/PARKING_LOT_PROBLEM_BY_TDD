@@ -12,6 +12,8 @@ class Cars
     car8={vehicleNumber:"MH.15.ZZ.8888",color:"Indigo"}
     car9={vehicleNumber:"MH.15.ZZ.9999",color:"Gray",parkTime:Date()}
     car10={vehicleNumber:"MH.15.ZZ.1010",color:"Gold",parkTime:Date(),driverType:"Handicap"}
+    car11={vehicleNumber:"MH.15.ZZ.1111",color:"Pink",parkTime:Date(),driverType:"Normal",carType:"Large"}
+
 
 }
 module.exports=new Cars

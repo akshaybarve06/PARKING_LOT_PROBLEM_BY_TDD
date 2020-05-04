@@ -11,7 +11,7 @@ let cars=require('../main/Cars')
 describe(`Test Cases For Parking Lot System`, () =>
 {
     // Run Before Each Test Execution
-   beforeEach(()=>{
+    beforeEach(()=>{
         sinon.stub(owner,'checkParkingFull');
     })
     afterEach(()=>{
@@ -142,4 +142,15 @@ describe(`Test Cases For Parking Lot System With Additional Functions`, () =>
              assert.equal(e.message,"Couldn't Find Nearest Slot Adding At Available Slot")
          }
      })
+     // Test Case To Check if Vehicle is Large then it will find Largest slot and park in that
+     it(`given car object when car is large,attendent will park car at largest slot`, ()=>
+    {
+        try{
+            parkingLotMain.isParked(cars.car11,function(returnResult){
+                expect(returnResult).to.equal(true);
+            })
+        }catch(e){
+            assert.equal(e.message,"Couldn't find Largest Slot")
+        }
+    })
 })

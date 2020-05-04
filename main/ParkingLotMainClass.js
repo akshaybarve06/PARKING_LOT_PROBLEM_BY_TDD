@@ -5,7 +5,7 @@ let owner=require('./ParkingLotOwner')
 
 // Requred Variables
 let parkingCapacity=3
-let noOfVehicles=0;
+let noOfVehicles=0,spaceCount=0, finalSpaceCount=0, rowIndex,columnIndex;
 let index=[]
 
 class ParkingLotMainClass
@@ -25,8 +25,12 @@ class ParkingLotMainClass
             {
                 if(vehicle.driverType=='Handicap')
                     index=this.findNearestSlot(undefined)
-                else
-                    index=this.checkForParkingSlot(undefined)
+                    else{
+                        if(vehicle.carType=='Large')
+                            index=this.findLotWithLargestSpace()
+                        else
+                            index=this.checkForParkingSlot(undefined)
+                    }
                 this.parking[index[0]][index[1]]=vehicle
                 noOfVehicles++
                 callback(true)
@@ -72,9 +76,9 @@ class ParkingLotMainClass
     //Method To Check Nearest Slot in Parking
     findNearestSlot(vehicle)
     {
-        for(let rowIndex=0; rowIndex < (parkingCapacity/2); rowIndex++ )
+        for(rowIndex=0; rowIndex < (parkingCapacity/2); rowIndex++ )
         {
-            for(let columnIndex=0; columnIndex < parkingCapacity; columnIndex++ )
+            for(columnIndex=0; columnIndex < parkingCapacity; columnIndex++ )
             {
                 if (this.parking[rowIndex][columnIndex] == vehicle )
                 {
@@ -89,9 +93,9 @@ class ParkingLotMainClass
     // Method To Check Availability of Input Vehicle
     checkForParkingSlot(vehicle)
     {
-        for(let rowIndex=0; rowIndex < this.parking.length; rowIndex++ )
+        for(rowIndex=0; rowIndex < this.parking.length; rowIndex++ )
         {
-            for(let columnIndex=0; columnIndex < this.parking.length; columnIndex++ )
+            for(columnIndex=0; columnIndex < this.parking.length; columnIndex++ )
             {
                 if (this.parking[rowIndex][columnIndex] == vehicle )
                 {
@@ -100,6 +104,26 @@ class ParkingLotMainClass
                 }
             }
         }
+    }
+    //Method To Find The Largest lot in Parking To Park Large car
+    findLotWithLargestSpace()
+    {
+        for(rowIndex=0; rowIndex < parkingCapacity; rowIndex++ )
+        {
+            spaceCount=0
+            for(columnIndex=0; columnIndex < parkingCapacity; columnIndex++ )
+            {
+                if (this.parking[rowIndex][columnIndex] == undefined )
+                    spaceCount++
+            }
+            if(finalSpaceCount < spaceCount)
+            {                    
+                var arr=[rowIndex,columnIndex]
+                return arr
+            }
+            finalSpaceCount=spaceCount
+        }
+        throw new Error("Couldn't find Largest Slot")
     }
 }
 module.exports=new ParkingLotMainClass;
