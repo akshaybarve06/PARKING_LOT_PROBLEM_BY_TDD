@@ -13,7 +13,8 @@ class Cars
     car9={vehicleNumber:"MH.15.ZZ.9999",color:"White",parkTime:Date()}
     car10={vehicleNumber:"MH.15.ZZ.1010",color:"White",parkTime:Date(),driverType:"Handicap"}
     car11={vehicleNumber:"MH.15.ZZ.1111",color:"Pink",parkTime:Date(),driverType:"Normal",carType:"Large"}
-
-
+    car12={vehicleNumber:"MH.15.AN.8079",color:"Blue",brand:"Toyota",carName:"C-HR",parkTime:Date(),driverType:"Normal",carType:"Small"}
+    car13={vehicleNumber:"MH.15.AN.8070",color:"Blue",brand:"Toyota",carName:"Land-Cruiser",parkTime:Date(),driverType:"Normal",carType:"Large"}
+    car14={vehicleNumber:"MH.15.AN.8061",color:"Blue",brand:"Toyota",carName:"Fortuner",parkTime:Date(),driverType:"Normal",carType:"Small"}
 }
 module.exports=new Cars
