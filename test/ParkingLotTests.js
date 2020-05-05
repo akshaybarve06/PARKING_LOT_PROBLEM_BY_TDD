@@ -170,13 +170,24 @@ describe(`Test Cases For Parking Lot System With Additional Functions`, () =>
         let allCars=[cars.car12,cars.car13,cars.car14]
         try{
             allCars.forEach(car =>{
-                parkingLotMain.isParked(car,function(returnResult){
-                    let findResult=parkingLotMain.findCarByColorAndBrand('Blue','Toyota')
-                        expect(findResult).to.equal(true);
-                    })
+            parkingLotMain.isParked(car,function(returnResult){
+                let findResult=parkingLotMain.findCarByColorAndBrand('Blue','Toyota')
+                    expect(findResult).to.equal(true);
+                })
             })
         }catch(e){
             assert.equal(e.message,"No Blue Toyota Car Parked Here")
+        }
+    })
+    // Test Case To Find All BMW Cars From Parking Lot
+    it(`given car object of BMW cars when all cars found should return true`,()=>
+    {
+        try{
+            parkingLotMain.FindCarByBrand('BMW',function(returnResult){
+                expect(returnResult).to.equal(true);
+            })
+        }catch(e){
+            assert.equal(e.message,"No BMW Car Parked Here")
         }
     })
 })

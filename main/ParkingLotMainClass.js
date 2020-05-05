@@ -76,6 +76,7 @@ class ParkingLotMainClass
     findCarByColor(vehicleColor)
     {
         let index=0
+        arr=[]
         for(rowIndex=0; rowIndex < this.parking.length; rowIndex++ )
         {
             for(columnIndex=0; columnIndex < this.parking.length; columnIndex++ )
@@ -98,13 +99,14 @@ class ParkingLotMainClass
     findCarByColorAndBrand(vehicleColor,vehicleBrand)
     {
         let index=0
+        arr=[]
         for(rowIndex=0; rowIndex < this.parking.length; rowIndex++ )
         {
             for(columnIndex=0; columnIndex < this.parking.length; columnIndex++ )
             {
                 if(this.parking[rowIndex][columnIndex]!=undefined)
                 {
-                    if (this.parking[rowIndex][columnIndex].color == vehicleColor && this.parking[rowIndex][columnIndex].brand == vehicleBrand )
+                    if (this.parking[rowIndex][columnIndex].includes == vehicleColor && this.parking[rowIndex][columnIndex].includes == vehicleBrand )
                     {
                         arr[index]=[rowIndex,columnIndex,this.parking[rowIndex][columnIndex].vehicleNumber]
                         index++
@@ -120,13 +122,14 @@ class ParkingLotMainClass
     //Method To Check Nearest Slot in Parking
     findNearestSlot(vehicle)
     {
+        arr=[]
         for(rowIndex=0; rowIndex < (parkingCapacity/2); rowIndex++ )
         {
             for(columnIndex=0; columnIndex < parkingCapacity; columnIndex++ )
             {
                 if (this.parking[rowIndex][columnIndex] == vehicle )
                 {
-                    var arr=[rowIndex,columnIndex]
+                    arr=[rowIndex,columnIndex]
                     return arr
                 }
             }
@@ -137,13 +140,14 @@ class ParkingLotMainClass
     // Method To Check Availability of Input Vehicle
     checkForParkingSlot(vehicle)
     {
+        arr=[]
         for(rowIndex=0; rowIndex < parkingCapacity; rowIndex++ )
         {
             for(columnIndex=0; columnIndex < parkingCapacity; columnIndex++ )
             {
                 if (this.parking[rowIndex][columnIndex] == vehicle )
                 {
-                    var arr=[rowIndex,columnIndex]
+                    arr=[rowIndex,columnIndex]
                     return arr
                 }
             }
@@ -153,6 +157,7 @@ class ParkingLotMainClass
     //Method To Find The Largest lot in Parking To Park Large car
     findLotWithLargestSpace()
     {
+        arr=[]
         for(rowIndex=0; rowIndex < parkingCapacity; rowIndex++ )
         {
             spaceCount=0
@@ -163,7 +168,7 @@ class ParkingLotMainClass
             }
             if(finalSpaceCount < spaceCount)
             {                    
-                var arr=[rowIndex,columnIndex]
+                arr=[rowIndex,columnIndex]
                 return arr
             }
             finalSpaceCount=spaceCount
