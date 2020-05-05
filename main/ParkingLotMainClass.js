@@ -4,7 +4,7 @@
 let owner=require('./ParkingLotOwner')
 
 // Requred Variables
-let parkingCapacity=3
+let parkingCapacity=4
 let noOfVehicles=0,spaceCount=0, finalSpaceCount=0, rowIndex,columnIndex;
 let index=[],arr=[]
 
@@ -47,7 +47,7 @@ class ParkingLotMainClass
             index=this.checkForParkingSlot(vehicle)
             delete this.parking[index[0]][index[1]]
             noOfVehicles--
-            owner.checkSpaceAvailable(vehicle,[index[0]],[index[1]])
+            owner.checkSpaceAvailable(vehicle)
             return true
        }
     }
@@ -55,7 +55,7 @@ class ParkingLotMainClass
     emptySlots()
     {
         index=this.checkForParkingSlot(undefined)
-        return index
+            return index
     }
     // Method To Add Vehicle At Specific Slot
     addAtSpecific(index,vehicle,callback)
@@ -137,9 +137,9 @@ class ParkingLotMainClass
     // Method To Check Availability of Input Vehicle
     checkForParkingSlot(vehicle)
     {
-        for(rowIndex=0; rowIndex < this.parking.length; rowIndex++ )
+        for(rowIndex=0; rowIndex < parkingCapacity; rowIndex++ )
         {
-            for(columnIndex=0; columnIndex < this.parking.length; columnIndex++ )
+            for(columnIndex=0; columnIndex < parkingCapacity; columnIndex++ )
             {
                 if (this.parking[rowIndex][columnIndex] == vehicle )
                 {
@@ -148,6 +148,7 @@ class ParkingLotMainClass
                 }
             }
         }
+        throw new Error("Couldn't Add, Remove or Found Specific Vehicle")
     }
     //Method To Find The Largest lot in Parking To Park Large car
     findLotWithLargestSpace()

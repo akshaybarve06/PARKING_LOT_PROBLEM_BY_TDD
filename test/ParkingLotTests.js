@@ -165,7 +165,7 @@ describe(`Test Cases For Parking Lot System With Additional Functions`, () =>
         }
     })
     // Test Case To Find Blue Toyota Cars
-    it.only(`given car object when police want park car information should return true`,()=>
+    it(`given car object when police want park car information should return true`,()=>
     {
         let allCars=[cars.car12,cars.car13,cars.car14]
         try{
@@ -179,5 +179,4 @@ describe(`Test Cases For Parking Lot System With Additional Functions`, () =>
             assert.equal(e.message,"No Blue Toyota Car Parked Here")
         }
     })
-
 })
