@@ -167,7 +167,7 @@ describe(`Test Cases For Parking Lot System With Additional Functions`, () =>
     // Test Case To Find Blue Toyota Cars
     it(`given car object when police want park car information should return true`,()=>
     {
-        let allCars=[cars.car12,cars.car13,cars.car14]
+        let allCars=[cars.car12,cars.car13,cars.car14,cars.car15,cars.car16]
         try{
             allCars.forEach(car =>{
             parkingLotMain.isParked(car,function(returnResult){
@@ -183,7 +183,7 @@ describe(`Test Cases For Parking Lot System With Additional Functions`, () =>
     it(`given car object of BMW cars when all cars found should return true`,()=>
     {
         try{
-            parkingLotMain.FindCarByBrand('BMW',function(returnResult){
+            parkingLotMain.findCarByBrand('BMW',function(returnResult){
                 expect(returnResult).to.equal(true);
             })
         }catch(e){

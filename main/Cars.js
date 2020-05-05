@@ -16,5 +16,7 @@ class Cars
     car12={vehicleNumber:"MH.15.AN.8079",color:"Blue",brand:"Toyota",carName:"C-HR",parkTime:Date(),driverType:"Normal",carType:"Small"}
     car13={vehicleNumber:"MH.15.AN.8070",color:"Blue",brand:"Toyota",carName:"Land-Cruiser",parkTime:Date(),driverType:"Normal",carType:"Large"}
     car14={vehicleNumber:"MH.15.AN.8061",color:"Blue",brand:"Toyota",carName:"Fortuner",parkTime:Date(),driverType:"Normal",carType:"Small"}
+    car15={vehicleNumber:"MH.15.AN.9079",color:"Black",brand:"BMW",carName:"3-Series",parkTime:Date(),driverType:"Normal",carType:"Small"}
+    car16={vehicleNumber:"MH.15.AN.9080",color:"White",brand:"BMW",carName:"X3",parkTime:Date(),driverType:"Normal",carType:"Large"}
 }
 module.exports=new Cars
