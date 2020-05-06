@@ -4,8 +4,8 @@
 let owner=require('./ParkingLotOwner')
 
 // Requred Variables
-let parkingCapacity=4
-let noOfVehicles=0,spaceCount=0, finalSpaceCount=0, rowIndex,columnIndex;
+let noOfVehicles=0,spaceCount=0, finalSpaceCount=0, slotIndex=0,lotIndex=0;
+let maxNoOfSlots=4, maxNoOfLots=10;
 let index=[],arr=[]
 
 class ParkingLotMainClass
@@ -21,7 +21,7 @@ class ParkingLotMainClass
         else 
         {
             // If Parking is not full then it will add vehicle
-            if(owner.checkParkingFull(noOfVehicles,parkingCapacity))
+            if(owner.checkParkingFull(noOfVehicles,maxNoOfSlots,maxNoOfLots))
             {
                 if(vehicle.driverType=='Handicap')
                     index=this.findNearestSlot(undefined)
@@ -75,69 +75,69 @@ class ParkingLotMainClass
     }
     findCarByColor(vehicleColor)
     {
-        let index=0
+        let index=1
         arr=[]
-        for(rowIndex=0; rowIndex < this.parking.length; rowIndex++ )
+        for(slotIndex=1; slotIndex < maxNoOfSlots; slotIndex++ )
         {
-            for(columnIndex=0; columnIndex < this.parking.length; columnIndex++ )
+            for(lotIndex=1; lotIndex < maxNoOfLots; lotIndex++ )
             {
-                if(this.parking[rowIndex][columnIndex]!=undefined)
+                if(this.parking[slotIndex][lotIndex]!=undefined)
                 {
-                    if (this.parking[rowIndex][columnIndex].color == vehicleColor )
+                    if (this.parking[slotIndex][lotIndex].color == vehicleColor )
                     {
-                        arr[index]=[rowIndex,columnIndex]
+                        arr[index]=[slotIndex,lotIndex]
                         index++
                     }
                 }
             }
         }
-        if (arr.length > 0 )
+        if (arr.length > 1 )
             return true
         else
             throw new Error("No White Car Parked Here")
     }
     findCarByColorAndBrand(vehicleColor,vehicleBrand)
     {
-        let index=0
+        let index=1
         arr=[]
-        for(rowIndex=0; rowIndex < this.parking.length; rowIndex++ )
+        for(slotIndex=1; slotIndex < maxNoOfSlots; slotIndex++ )
         {
-            for(columnIndex=0; columnIndex < this.parking.length; columnIndex++ )
+            for(lotIndex=1; lotIndex < maxNoOfLots; lotIndex++ )
             {
-                if(this.parking[rowIndex][columnIndex]!=undefined)
+                if(this.parking[slotIndex][lotIndex]!=undefined)
                 {
-                    if (this.parking[rowIndex][columnIndex].color == vehicleColor && this.parking[rowIndex][columnIndex].brand == vehicleBrand )
+                    if (this.parking[slotIndex][lotIndex].color == vehicleColor && this.parking[slotIndex][lotIndex].brand == vehicleBrand )
                     {
-                        arr[index]=[rowIndex,columnIndex,this.parking[rowIndex][columnIndex].vehicleNumber]
+                        arr[index]=[slotIndex,lotIndex,this.parking[slotIndex][lotIndex].vehicleNumber]
                         index++
                     }
                 }
             }
         }
-        if (arr.length > 0 )
+        if (arr.length > 1 )
             return true
         else
             throw new Error("No Blue Toyota Car Parked Here")
     }
     findCarByBrand(vehicleBrand,callback)
     {
-        let index=0
+        let index=1
         arr=[]
-        for(rowIndex=0; rowIndex < this.parking.length; rowIndex++ )
+        for(slotIndex=1; slotIndex < maxNoOfSlots; slotIndex++ )
         {
-            for(columnIndex=0; columnIndex < this.parking.length; columnIndex++ )
+            for(lotIndex=1; lotIndex < maxNoOfLots; lotIndex++ )
             {
-                if(this.parking[rowIndex][columnIndex]!=undefined)
+                if(this.parking[slotIndex][lotIndex]!=undefined)
                 {
-                    if (this.parking[rowIndex][columnIndex].brand == vehicleBrand )
+                    if (this.parking[slotIndex][lotIndex].brand == vehicleBrand )
                     {
-                        arr[index]=[rowIndex,columnIndex,this.parking[rowIndex][columnIndex].vehicleNumber]
+                        arr[index]=[slotIndex,lotIndex,this.parking[slotIndex][lotIndex].vehicleNumber]
                         index++
                     }
                 }
             }
         }
-        if (arr.length > 0 )
+        if (arr.length > 1 )
             callback(true)
         else
             throw new Error("No BMW Car Parked Here")
@@ -146,13 +146,13 @@ class ParkingLotMainClass
     findNearestSlot(vehicle)
     {
         arr=[]
-        for(rowIndex=0; rowIndex < (parkingCapacity/2); rowIndex++ )
+        for(slotIndex=1; slotIndex < (maxNoOfSlots/2); slotIndex++ )
         {
-            for(columnIndex=0; columnIndex < parkingCapacity; columnIndex++ )
+            for(lotIndex=1; lotIndex < maxNoOfLots; lotIndex++ )
             {
-                if (this.parking[rowIndex][columnIndex] == vehicle )
+                if (this.parking[slotIndex][lotIndex] == vehicle )
                 {
-                    arr=[rowIndex,columnIndex]
+                    arr=[slotIndex,lotIndex]
                     return arr
                 }
             }
@@ -164,13 +164,13 @@ class ParkingLotMainClass
     checkForParkingSlot(vehicle)
     {
         arr=[]
-        for(rowIndex=0; rowIndex < parkingCapacity; rowIndex++ )
+        for(slotIndex=1; slotIndex < maxNoOfSlots; slotIndex++ )
         {
-            for(columnIndex=0; columnIndex < parkingCapacity; columnIndex++ )
+            for(lotIndex=1; lotIndex < maxNoOfLots; lotIndex++ )
             {
-                if (this.parking[rowIndex][columnIndex] == vehicle )
+                if (this.parking[slotIndex][lotIndex] == vehicle )
                 {
-                    arr=[rowIndex,columnIndex]
+                    arr=[slotIndex,lotIndex]
                     return arr
                 }
             }
@@ -181,17 +181,17 @@ class ParkingLotMainClass
     findLotWithLargestSpace()
     {
         arr=[]
-        for(rowIndex=0; rowIndex < parkingCapacity; rowIndex++ )
+        for(slotIndex=1; slotIndex < maxNoOfSlots; slotIndex++ )
         {
             spaceCount=0
-            for(columnIndex=0; columnIndex < parkingCapacity; columnIndex++ )
+            for(lotIndex=1; lotIndex < maxNoOfLots; lotIndex++ )
             {
-                if (this.parking[rowIndex][columnIndex] == undefined )
+                if (this.parking[slotIndex][lotIndex] == undefined )
                     spaceCount++
             }
             if(finalSpaceCount < spaceCount)
             {                    
-                arr=[rowIndex,columnIndex]
+                arr=[slotIndex,lotIndex]
                 return arr
             }
             finalSpaceCount=spaceCount

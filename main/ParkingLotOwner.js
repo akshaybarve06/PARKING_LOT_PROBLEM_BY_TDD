@@ -5,9 +5,9 @@ let airportSecurity=require('./AirportSecurity')
 class ParkingLotOwner
 {
     // Method To Check if Parking Capacity os Reached
-    checkParkingFull(parkedVehicles,parkingCapacity)
+    checkParkingFull(parkedVehicles,lots,slots)
     {
-        if (parkedVehicles == parkingCapacity*parkingCapacity)
+        if (parkedVehicles == lots*slots)
             airportSecurity.sendNotification(false)
         else
             return true
