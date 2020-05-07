@@ -153,6 +153,10 @@ describe(`Test Cases For Parking Lot System With Additional Functions`, () =>
             assert.equal(e.message,"Couldn't find Largest Slot")
         }
     })
+})
+
+describe(`Test Cases For Parking Lot System For Finding Car In Parking Lot`, () =>
+{
     // Test Case To Find Cars of White Color In Parking Lot To Detect Bomb
     it(`given car object of white color car when in parking match shoult return true`,()=>
     {
@@ -188,6 +192,16 @@ describe(`Test Cases For Parking Lot System With Additional Functions`, () =>
             })
         }catch(e){
             assert.equal(e.message,"No BMW Car Parked Here")
+        }
+    })
+    // Test Case To Find Cars Which are parked 30 Minutes before, To Detect Bomb Threat
+    it(`given car object when car found parked before 30 mins should return true`, () =>{
+        try{
+            parkingLotMain.findCarByTime('30',function(returnResult){
+                expect(returnResult).to.equal(true);
+            })
+        }catch(e){
+            assert.equal(e.message,"No Cars Park Before 30 Minutes")
         }
     })
 })
