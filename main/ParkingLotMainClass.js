@@ -142,6 +142,38 @@ class ParkingLotMainClass
         else
             throw new Error("No BMW Car Parked Here")
     }
+    findCarByTime(timeInMinutes,callback)
+    {
+        let index=0
+        arr=[]
+        for(lotIndex=0; lotIndex < noOfLots; lotIndex++ )
+        {
+            for(slotIndex=0; slotIndex < noOfSlots; slotIndex++ )
+            {
+                if(this.parking[slotIndex][lotIndex]!=undefined)
+                {      
+                    let parkTime=this.minutesConversion(this.parking[slotIndex][lotIndex].parkTime)
+                    let currentTime=this.minutesConversion(new Date())
+                    if((currentTime- parkTime)<=timeInMinutes)
+                    {
+                        arr[index]=[slotIndex,lotIndex,this.parking[slotIndex][lotIndex].vehicleNumber]
+                        index++
+                    }
+                }
+            }
+        }
+        if (arr.length > 0 )
+            callback(true)
+        else
+            throw new Error("No Car Parked Since 30 Minutes")
+    }
+    minutesConversion(date)
+    {
+        let hrs=date.getHours()
+        let mins=date.getMinutes()
+        let totalMins=(hrs*60+mins)
+        return totalMins
+    }
     //Method To Check Nearest Slot in Parking
     findNearestSlot(vehicle)
     {

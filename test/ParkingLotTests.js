@@ -201,7 +201,7 @@ describe(`Test Cases For Parking Lot System For Finding Car In Parking Lot`, () 
                 expect(returnResult).to.equal(true);
             })
         }catch(e){
-            assert.equal(e.message,"No Cars Park Before 30 Minutes")
+            assert.equal(e.message,"No Car Parked Since 30 Minutes")
         }
     })
 })
