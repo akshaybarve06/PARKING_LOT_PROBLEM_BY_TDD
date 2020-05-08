@@ -13,7 +13,7 @@ class ParkingAttendant
     // Method To Find Nearest Parking Slot Available
     checkNearestSlot(callback)
     {
-        let nearestSlot=mainClassObject.findNearestSlot(undefined)
+        let nearestSlot=mainClassObject.checkForParkingSlot(undefined,(mainClassObject.noOfLots/2),mainClassObject.noOfSlots)
         callback(nearestSlot)
     }
 }

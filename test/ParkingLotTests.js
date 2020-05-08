@@ -106,7 +106,7 @@ describe(`Test Cases For Parking Lot System With Additional Functions`, () =>
              })
          })
          }catch(e){
-             assert.equal(e.message,"Couldn't Add, Remove or Found Specific Vehicle")
+             assert.equal(e.message,"Couldn't Find Specific Slot")
          }
      })
      // Test Case To Find Vehicle From Parking Lot
@@ -139,7 +139,7 @@ describe(`Test Cases For Parking Lot System With Additional Functions`, () =>
              })
          })
          }catch(e){
-             assert.equal(e.message,"Couldn't Find Nearest Slot Adding At Available Slot")
+             assert.equal(e.message,"Couldn't Find Specific Slot")
          }
      })
     // Test Case To Check if Vehicle is Large then it will find Largest slot and park in that
@@ -165,7 +165,7 @@ describe(`Test Cases For Parking Lot System For Finding Car In Parking Lot`, () 
                 expect(returnResult).to.equal(true)
             })
         }catch(e){
-            assert.equal(e.message,"No White Car Parked Here")
+            assert.equal(e.message,"No Such Car Parked Here")
         }
     })
     // Test Case To Find Blue Toyota Cars
@@ -175,12 +175,12 @@ describe(`Test Cases For Parking Lot System For Finding Car In Parking Lot`, () 
         try{
             allCars.forEach(car =>{
             parkingLotMain.isParked(car,function(returnResult){
-                let findResult=parkingLotMain.findCarByColorAndBrand('Blue','Toyota')
+                parkingLotMain.findCarByColorAndBrand('Blue','Toyota',function(findResult){
                     expect(findResult).to.equal(true);
                 })
-            })
+            })})
         }catch(e){
-            assert.equal(e.message,"No Blue Toyota Car Parked Here")
+            assert.equal(e.message,"No Such Car Parked Here")
         }
     })
     // Test Case To Find All BMW Cars From Parking Lot
@@ -191,7 +191,7 @@ describe(`Test Cases For Parking Lot System For Finding Car In Parking Lot`, () 
                 expect(returnResult).to.equal(true);
             })
         }catch(e){
-            assert.equal(e.message,"No BMW Car Parked Here")
+            assert.equal(e.message,"No Such Car Parked Here")
         }
     })
     // Test Case To Find Cars Which are parked 30 Minutes before, To Detect Bomb Threat
@@ -201,7 +201,7 @@ describe(`Test Cases For Parking Lot System For Finding Car In Parking Lot`, () 
                 expect(returnResult).to.equal(true);
             })
         }catch(e){
-            assert.equal(e.message,"No Car Parked Since 30 Minutes")
+            assert.equal(e.message,"No Such Car Parked Here")
         }
     })
 })
