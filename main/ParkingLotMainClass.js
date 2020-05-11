@@ -82,6 +82,19 @@ class ParkingLotMainClass
         }
         this.checkArrayLength(arr,callback)
     }
+    getAllValidVehicles(callback){
+        let index=0
+        arr=[]
+        for(lotIndex=0; lotIndex < noOfLots; lotIndex++ ){
+            for(slotIndex=0; slotIndex < noOfSlots; slotIndex++ ){
+                if(this.parking[slotIndex][lotIndex]!=undefined){  
+                    arr[index]=[this.parking[slotIndex][lotIndex].vehicleNumber]
+                    index++
+                }
+            }
+        }
+        this.checkArrayLength(arr,callback)
+    }
     // Method To Find Car Parked Within Specific Time Slot
     findCarByTime(timeInMinutes,callback){
         let index=0
