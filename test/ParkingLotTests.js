@@ -228,4 +228,14 @@ describe(`Test Cases For Parking Lot System For Finding Car In Parking Lot`, () 
             assert.equal(e.message,"No Such Car Parked Here")
         }
     })
+    // Test Case To Find All Valid Cars 
+    it(`given car object when valid cars found in paring lot should return true`,()=>{
+        try{
+            parkingLotMain.getAllValidVehicles(function(returnResult){
+                expect(returnResult).to.be.equal(true);
+            })
+        }catch(e){
+            assert.equal(e.message,"No Such Car Parked Here")
+        }
+    })
 })
