@@ -214,4 +214,18 @@ describe(`Test Cases For Parking Lot System For Finding Car In Parking Lot`, () 
             assert.equal(e.message,"No Such Car Parked Here")
         }
     })
+    // Test Case To Find Cars Which are small and Driver are Handicap
+    it(`given car object when small and Driver handicap found should return true`,()=>{
+        let findVehicle={
+            "driverType" : 'Handicap',
+            "carType" : 'Small'
+        }
+        try{
+            parkingLotMain.findCarByEntity(findVehicle,function(returnResult){
+                expect(returnResult).to.be.equal(true);
+            })
+        }catch(e){
+            assert.equal(e.message,"No Such Car Parked Here")
+        }
+    })
 })
