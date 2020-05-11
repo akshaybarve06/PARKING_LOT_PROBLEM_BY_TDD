@@ -1,14 +1,12 @@
 // Class of Parking Lot Owner To Check if Parking Is FULL
 
-let airportSecurity=require('./AirportSecurity')
-
 class ParkingLotOwner
 {
     // Method To Check if Parking Capacity os Reached
     checkParkingFull(parkedVehicles,lots,slots)
     {
         if (parkedVehicles == lots*slots)
-            airportSecurity.sendNotification(false)
+            throw new Error("Notification From Parking Lot : Parking Is Full..!")
         else
             return true
     }   

@@ -160,8 +160,11 @@ describe(`Test Cases For Parking Lot System For Finding Car In Parking Lot`, () 
     // Test Case To Find Cars of White Color In Parking Lot To Detect Bomb
     it(`given car object of white color car when in parking match shoult return true`,()=>
     {
+        let findVehicle={
+            "color" : 'White',
+        }
         try{
-            parkingLotMain.findCarByColor('White',function(returnResult){
+            parkingLotMain.findCarByEntity(findVehicle,function(returnResult){
                 expect(returnResult).to.equal(true)
             })
         }catch(e){
@@ -172,10 +175,14 @@ describe(`Test Cases For Parking Lot System For Finding Car In Parking Lot`, () 
     it(`given car object when police want park car information should return true`,()=>
     {
         let allCars=[cars.car12,cars.car13,cars.car14,cars.car15,cars.car16]
+        let findVehicle={
+            "color" : 'Blue',
+            "brand" : 'Toyota'
+        }
         try{
             allCars.forEach(car =>{
             parkingLotMain.isParked(car,function(returnResult){
-                parkingLotMain.findCarByColorAndBrand('Blue','Toyota',function(findResult){
+                parkingLotMain.findCarByEntity(findVehicle,function(findResult){
                     expect(findResult).to.equal(true);
                 })
             })})
@@ -186,8 +193,11 @@ describe(`Test Cases For Parking Lot System For Finding Car In Parking Lot`, () 
     // Test Case To Find All BMW Cars From Parking Lot
     it(`given car object of BMW cars when all cars found should return true`,()=>
     {
+        let findVehicle={
+            "brand" : 'BMW'
+        }
         try{
-            parkingLotMain.findCarByBrand('BMW',function(returnResult){
+            parkingLotMain.findCarByEntity(findVehicle,function(returnResult){
                 expect(returnResult).to.equal(true);
             })
         }catch(e){

@@ -1,7 +1,6 @@
 // Class To Add Vehicles To Parking
 class Cars
 {
-
     car0={vehicleNumber:"MH.15.XX.0000",parkTime:new Date()}
     car1={vehicleNumber:"MH.15.XX.1111",parkTime:new Date()}
     car2={vehicleNumber:"MH.15.XX.2222",parkTime:new Date()}

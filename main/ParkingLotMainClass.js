@@ -67,43 +67,13 @@ class ParkingLotMainClass
         else
             throw new Error("This vehicle is not park here, check credentials again")
     }
-    findCarByColor(vehicleColor,callback){
-        let index=0
-        arr=[]
-        for(lotIndex=0; lotIndex < noOfLots; lotIndex++ ) {
-            for(slotIndex=0; slotIndex < noOfSlots; slotIndex++ ){
-                if(this.parking[slotIndex][lotIndex]!=undefined){
-                    if (this.parking[slotIndex][lotIndex].color == vehicleColor ){
-                        arr[index]=[slotIndex,lotIndex]
-                        index++
-                    }
-                }
-            }
-        }
-        this.checkArrayLength(arr,callback)
-    }
-    findCarByColorAndBrand(vehicleColor,vehicleBrand,callback){
+    findCarByEntity(vehicle,callback){
         let index=0
         arr=[]
         for(lotIndex=0; lotIndex < noOfLots; lotIndex++ ){
             for(slotIndex=0; slotIndex < noOfSlots; slotIndex++ ){
                 if(this.parking[slotIndex][lotIndex]!=undefined){
-                    if (this.parking[slotIndex][lotIndex].color == vehicleColor && this.parking[slotIndex][lotIndex].brand == vehicleBrand ){
-                        arr[index]=[slotIndex,lotIndex,this.parking[slotIndex][lotIndex].vehicleNumber]
-                        index++
-                    }
-                }
-            }
-        }
-        this.checkArrayLength(arr,callback)
-    }       
-    findCarByBrand(vehicleBrand,callback){
-        let index=0
-        arr=[]
-        for(lotIndex=0; lotIndex < noOfLots; lotIndex++ ){
-            for(slotIndex=0; slotIndex < noOfSlots; slotIndex++ ){
-                if(this.parking[slotIndex][lotIndex]!=undefined){
-                    if (this.parking[slotIndex][lotIndex].brand == vehicleBrand ){
+                    if (this.parking[slotIndex][lotIndex].brand == vehicle ){
                         arr[index]=[slotIndex,lotIndex,this.parking[slotIndex][lotIndex].vehicleNumber]
                         index++
                     }
